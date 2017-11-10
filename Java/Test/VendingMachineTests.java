@@ -148,4 +148,10 @@ public class VendingMachineTests {
         assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
     }
 
+    @Test
+    public void whenSoldOutItemIsSelectedDisplayReadsSoldOut(){
+        vendingMachine.addItem("Candy", 0);
+        vendingMachine.selectItem("Candy");
+        assertEquals("SOLD OUT", vendingMachine.getDisplayScreenText());
+    }
 }
