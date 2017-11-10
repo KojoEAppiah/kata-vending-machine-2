@@ -95,4 +95,16 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Chips");
         assertEquals(0.25, vendingMachine.getCoinReturnValue(), 0.0);
     }
+
+    @Test
+    public void whenChangeIsMadeCoinsAreMovedFromCoinBoxToCoinReturn(){
+        vendingMachine.fillCoinBox(2, 4, 2);
+
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.selectItem("Candy");
+        assertEquals(3, vendingMachine.getCoinBoxCoinCount(VendingMachine.DIME));
+    }
 }
