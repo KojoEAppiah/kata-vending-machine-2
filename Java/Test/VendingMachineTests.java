@@ -11,6 +11,9 @@ public class VendingMachineTests {
     @Before
     public void setUp() {
         vendingMachine = new VendingMachine();
+        vendingMachine.setItemPrice("Cola", 1.00);
+        vendingMachine.setItemPrice("Chips", 0.50);
+        vendingMachine.setItemPrice("Candy", 0.65);
     }
 
     @Test
@@ -70,5 +73,16 @@ public class VendingMachineTests {
     public void whenCandyPriceIsSetItIsStoredAndReturnedProperly(){
         vendingMachine.setItemPrice("Candy", 0.65);
         assertEquals(0.65, vendingMachine.getItemPrice("Candy"), 0.0);
+    }
+
+    @Test
+    public void whenCurrentCoinsValueIsGreatEnoughAndItemCountIsGreaterThanZeroAnItemCanBeDispensed(){
+
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.selectItem("Candy");
+        assertEquals(0, vendingMachine.getItemCount("Candy"));
     }
 }

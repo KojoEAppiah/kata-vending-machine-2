@@ -56,4 +56,10 @@ public class VendingMachine {
         return itemPrices.get(itemName);
     }
 
+    public void selectItem(String itemName) {
+        if (this.currentCoinsValue >= itemPrices.get(itemName) && itemCounts.get(itemName) != null) {
+            itemCounts.put(itemName, (itemCounts.get(itemName) - 1));
+        }
+    }
+
 }
