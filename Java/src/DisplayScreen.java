@@ -45,8 +45,12 @@ public class DisplayScreen {
     }
 
     public void togglePrice(Double price, double currentCoinsValue) {
-
-        this.setCoinDisplay(price);
-        this.currentText = "PRICE " + this.currentText;
+        if(this.currentText.contains("PRICE")){
+            this.setCoinDisplay(currentCoinsValue);
+        }
+        else {
+            this.setCoinDisplay(price);
+            this.currentText = "PRICE " + this.currentText;
+        }
     }
 }

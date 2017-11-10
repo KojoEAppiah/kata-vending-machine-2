@@ -192,4 +192,13 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Cola");
         assertEquals("PRICE $1.00", vendingMachine.getDisplayScreenText());
     }
+
+    @Test
+    public void whenAnItemIsSelectedAndCurrentCoinsValueIsInsufficientAndTheItemsPriceIsDisplayedTheDisplaySwitchesToTheCurrentCoinsValue(){
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.selectItem("Candy");
+        vendingMachine.selectItem("Candy");
+        assertEquals("$0.25", vendingMachine.getDisplayScreenText());
+    }
 }
