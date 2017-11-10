@@ -65,4 +65,10 @@ public class VendingMachineTests {
         vendingMachine.addItem("Candy", 1);
         assertEquals(1, vendingMachine.getItemCount("Candy"));
     }
+
+    @Test
+    public void whenCandyPriceIsSetItIsStoredAndReturnedProperly(){
+        vendingMachine.setItemPrice("Candy", 0.65);
+        assertEquals(0.65, vendingMachine.getItemPrice("Candy"), 0.0);
+    }
 }
