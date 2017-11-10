@@ -117,4 +117,16 @@ public class VendingMachineTests {
         assertEquals(0.30, vendingMachine.getCoinReturnValue(), 0.0);
     }
 
+    @Test
+    public void afterItemIsDispensedDisplayReadsThankYou(){
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+
+        vendingMachine.addItem("Cola", 1);
+        vendingMachine.selectItem("Cola");
+        assertEquals("THANK YOU", vendingMachine.getDisplayScreenText());
+    }
+
 }

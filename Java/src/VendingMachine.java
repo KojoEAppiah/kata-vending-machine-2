@@ -19,6 +19,7 @@ public class VendingMachine {
     private HashMap<String, Integer> itemCounts;
     private HashMap<String, Double> itemPrices;
 
+    private DisplayScreen displayScreen;
 
     VendingMachine(){
         this.itemCounts = new HashMap<String, Integer>();
@@ -42,6 +43,8 @@ public class VendingMachine {
         this.coinValues[NICKEL] = 0.05;
         this.coinValues[DIME] = 0.10;
         this.coinValues[QUARTER] = 0.25;
+
+        this.displayScreen = new DisplayScreen("");
 
     }
 
@@ -97,6 +100,7 @@ public class VendingMachine {
             double changeAmount = new BigDecimal(this.currentCoinsValue - this.itemPrices.get(itemName)).setScale(2, RoundingMode.HALF_UP).doubleValue();
             makeChange(changeAmount);
             this.currentCoinsValue = 0;
+            this.displayScreen.setCurrentText("THANK YOU");
         }
     }
 
@@ -133,5 +137,9 @@ public class VendingMachine {
         }
         this.coinReturnValue = this.currentCoinsValue;
         this.currentCoinsValue = 0;
+    }
+
+    public String getDisplayScreenText() {
+        return this.displayScreen.getCurrentText();
     }
 }
