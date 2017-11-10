@@ -44,13 +44,15 @@ public class DisplayScreen {
         }
     }
 
-    public void togglePrice(Double price, double currentCoinsValue) {
+    public void togglePrice(Double price, double currentCoinsValue, boolean canMakeChange) {
         if(this.currentText.contains("PRICE")){
             if(currentCoinsValue > 0)
                 this.setCoinDisplay(currentCoinsValue);
             else
-                this.currentText = "INSERT COIN";
-
+                if(canMakeChange)
+                    this.currentText = "INSERT COIN";
+                else
+                    this.currentText = "EXACT CHANGE ONLY";
         }
         else {
             this.setCoinDisplay(price);

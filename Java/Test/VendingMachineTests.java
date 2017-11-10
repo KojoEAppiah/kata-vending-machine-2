@@ -212,4 +212,11 @@ public class VendingMachineTests {
         assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
     }
 
+    @Test
+    public void whenAnItemIsSelectedAndCurrentCoinsValueIs0AndTheItemsPriceIsDisplayedWithInsuffiecientFundsTheDisplaySwitchesExactChangeOnly(){
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.selectItem("Candy");
+        vendingMachine.selectItem("Candy");
+        assertEquals("EXACT CHANGE ONLY", vendingMachine.getDisplayScreenText());
+    }
 }
