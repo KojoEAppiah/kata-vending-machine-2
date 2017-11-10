@@ -108,6 +108,9 @@ public class VendingMachine {
         else if(this.itemCounts.get(itemName) < 1){
             this.displayScreen.toggleSoldOut(this.currentCoinsValue, this.canMakeChange());
         }
+        else{
+            this.displayScreen.setCurrentText("PRICE $" + this.itemPrices.get(itemName));
+        }
     }
 
     private void makeChange(double changeAmount) {

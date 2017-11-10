@@ -171,5 +171,11 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
     }
-    
+
+    @Test
+    public void whenAnItemIsSelectedAndCurrentCoinsValueIsInsufficientTheItemsPriceIsDisplayed(){
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.selectItem("Candy");
+        assertEquals("PRICE $0.65", vendingMachine.getDisplayScreenText());
+    }
 }
