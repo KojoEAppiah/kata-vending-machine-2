@@ -26,4 +26,10 @@ public class VendingMachineTests {
         assertEquals(0.10, vendingMachine.getCurrentCoinsValue(), 0.0);
     }
 
+    @Test
+    public void whenAQuarterIsInsertedIntoTheVendingMachineItAddSTwentyFiveCentsToItsCurrentCoinsValue(){
+
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        assertEquals(0.25, vendingMachine.getCurrentCoinsValue(), 0.0);
+    }
 }
