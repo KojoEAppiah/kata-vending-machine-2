@@ -58,5 +58,11 @@ public class VendingMachineTests {
         vendingMachine.setItemPrice("Chips", 0.50);
         assertEquals(0.5, vendingMachine.getItemPrice("Chips"), 0.0);
     }
-    
+
+    @Test
+    public void whenCandyIsAddedToTheVendingMachineItsChipCountIncreasesByTheProvidedAmount(){
+
+        vendingMachine.addItem("Candy", 1);
+        assertEquals(1, vendingMachine.getItemCount("Candy"));
+    }
 }
