@@ -10,9 +10,11 @@ public class VendingMachine {
     public static final int QUARTER = 2;
 
     private HashMap<String, Integer> itemCounts;
+    private HashMap<String, Double> itemPrices;
 
     VendingMachine(){
         this.itemCounts = new HashMap<String, Integer>();
+        this.itemPrices = new HashMap<String, Double>();
 
         this.coinValues = new double[3];
         this.currentCoinsValue = 0.00;
@@ -41,7 +43,17 @@ public class VendingMachine {
             this.itemCounts.put(itemName, amount);
     }
 
+    public void setItemPrice(String itemName, double price) {
+        itemPrices.put(itemName, price);
+    }
+
+
     public int getItemCount(String itemName){
         return itemCounts.get(itemName);
     }
+
+    public double getItemPrice(String itemName) {
+        return itemPrices.get(itemName);
+    }
+
 }
