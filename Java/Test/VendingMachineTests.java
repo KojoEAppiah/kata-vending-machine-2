@@ -162,4 +162,14 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals("EXACT CHANGE ONLY", vendingMachine.getDisplayScreenText());
     }
+
+    @Test
+    public void whenTheDisplayReadsSoldOutAndASoldOutItemIsSelectedAgainWithCanMakeChangeTheDisplayReadsInsertCoin(){
+        vendingMachine.fillCoinBox(1,4,2);
+        vendingMachine.addItem("Candy", 0);
+        vendingMachine.selectItem("Candy");
+        vendingMachine.selectItem("Candy");
+        assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
+    }
+    
 }
