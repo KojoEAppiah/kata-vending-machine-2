@@ -201,4 +201,15 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals("$0.25", vendingMachine.getDisplayScreenText());
     }
+
+    @Test
+    public void whenAnItemIsSelectedAndCurrentCoinsValueIs0AndTheItemsPriceIsDisplayedTheDisplaySwitchesToInsertCoin(){
+        vendingMachine.fillCoinBox(1,4,2);
+
+        vendingMachine.addItem("Candy", 1);
+        vendingMachine.selectItem("Candy");
+        vendingMachine.selectItem("Candy");
+        assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
+    }
+
 }
