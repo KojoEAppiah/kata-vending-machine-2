@@ -85,4 +85,14 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals(0, vendingMachine.getItemCount("Candy"));
     }
+
+    @Test
+    public void whenItemIsPurchasedProperChangeValueIsReturned(){
+        vendingMachine.addItem("Chips", 1);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.selectItem("Chips");
+        assertEquals(0.25, vendingMachine.getCoinReturnValue(), 0.0);
+    }
 }

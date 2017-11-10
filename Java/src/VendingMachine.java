@@ -4,6 +4,7 @@ public class VendingMachine {
 
     private double[] coinValues;
     private double currentCoinsValue;
+    private double coinReturnValue;
 
     public static final int NICKEL = 0;
     public static final int DIME = 1;
@@ -12,12 +13,14 @@ public class VendingMachine {
     private HashMap<String, Integer> itemCounts;
     private HashMap<String, Double> itemPrices;
 
+
     VendingMachine(){
         this.itemCounts = new HashMap<String, Integer>();
         this.itemPrices = new HashMap<String, Double>();
 
         this.coinValues = new double[3];
         this.currentCoinsValue = 0.00;
+        this.coinReturnValue = 0.00;
 
         this.coinValues[NICKEL] = 0.05;
         this.coinValues[DIME] = 0.10;
@@ -56,9 +59,14 @@ public class VendingMachine {
         return itemPrices.get(itemName);
     }
 
+    public double getCoinReturnValue() {
+        return this.coinReturnValue;
+    }
+
     public void selectItem(String itemName) {
         if (this.currentCoinsValue >= itemPrices.get(itemName) && itemCounts.get(itemName) != null) {
             itemCounts.put(itemName, (itemCounts.get(itemName) - 1));
+            this.coinReturnValue += this.currentCoinsValue - itemPrices.get(itemName);
         }
     }
 
