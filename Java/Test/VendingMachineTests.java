@@ -107,4 +107,14 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals(3, vendingMachine.getCoinBoxCoinCount(VendingMachine.DIME));
     }
+
+    @Test
+    public void afterCoinReturnIsActivatedCurrentCoinsValueIsTransferredToCoinReturnValue(){
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        vendingMachine.addCoin(VendingMachine.NICKEL);
+        vendingMachine.returnCoins();
+
+        assertEquals(0.30, vendingMachine.getCoinReturnValue(), 0.0);
+    }
+
 }

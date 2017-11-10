@@ -81,6 +81,10 @@ public class VendingMachine {
         return this.coinBoxCoins[coinType];
     }
 
+    public boolean canMakeChange() {
+        return false;
+    }
+
     public void selectItem(String itemName) {
         if (this.currentCoinsValue >= this.itemPrices.get(itemName) && this.itemCounts.get(itemName) != null) {
             this.itemCounts.put(itemName, (this.itemCounts.get(itemName) - 1));
@@ -121,7 +125,13 @@ public class VendingMachine {
         this.coinBoxCoins[QUARTER] += quarters;
     }
 
-    public boolean canMakeChange() {
-        return false;
+
+    public void returnCoins() {
+        for(int index = 0; index < 3; index++){
+            this.coinReturnCoins[index] += this.currentCoins[index];
+            this.currentCoins[index] = 0;
+        }
+        this.coinReturnValue = this.currentCoinsValue;
+        this.currentCoinsValue = 0;
     }
 }
