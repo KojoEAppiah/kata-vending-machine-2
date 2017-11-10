@@ -29,4 +29,19 @@ public class DisplayScreen {
         return this.currentText;
     }
 
+    public void toggleSoldOut(double currentCoinsValue, boolean canMakeChange) {
+        if(this.currentText.contains("$") || this.currentText == "INSERT COIN" || this.currentText == "EXACT CHANGE ONLY"){
+            this.currentText = "SOLD OUT";
+        }
+        else if(this.currentText == "SOLD OUT") {
+            if(currentCoinsValue > 0)
+                this.setCoinDisplay(currentCoinsValue);
+            else
+            if(canMakeChange)
+                this.currentText = "INSERT COIN";
+            else
+                this.currentText = "EXACT CHANGE ONLY";
+        }
+    }
+
 }

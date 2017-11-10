@@ -106,7 +106,7 @@ public class VendingMachine {
             this.displayScreen.setCurrentText("THANK YOU");
         }
         else if(this.itemCounts.get(itemName) < 1){
-            this.displayScreen.setCurrentText("SOLD OUT");
+            this.displayScreen.toggleSoldOut(this.currentCoinsValue, this.canMakeChange());
         }
     }
 

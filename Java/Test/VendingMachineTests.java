@@ -154,4 +154,12 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals("SOLD OUT", vendingMachine.getDisplayScreenText());
     }
+
+    @Test
+    public void whenTheDisplayReadsSoldOutAndASoldOutItemIsSelectedAgainTheDisplayReadsExactChangeOnly(){
+        vendingMachine.addItem("Candy", 0);
+        vendingMachine.selectItem("Candy");
+        vendingMachine.selectItem("Candy");
+        assertEquals("EXACT CHANGE ONLY", vendingMachine.getDisplayScreenText());
+    }
 }
