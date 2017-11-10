@@ -85,7 +85,9 @@ public class VendingMachine {
         return this.coinBoxCoins[coinType];
     }
 
-    public boolean canMakeChange() {
+    public boolean canMakeChange(){
+        if(this.coinBoxCoins[QUARTER] >= 2 && this.coinBoxCoins[DIME] >= 4 && this.coinBoxCoins[NICKEL] >= 1)
+            return true;
         return false;
     }
 
@@ -128,6 +130,7 @@ public class VendingMachine {
         this.coinBoxCoins[NICKEL] += nickels;
         this.coinBoxCoins[DIME] += dimes;
         this.coinBoxCoins[QUARTER] += quarters;
+        this.displayScreen.stateChangeCheck(this.canMakeChange());
     }
 
 

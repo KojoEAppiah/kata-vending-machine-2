@@ -17,6 +17,14 @@ public class DisplayScreen {
         this.currentText = formatter.format(value);
     }
 
+    public void stateChangeCheck(boolean canMakeChange) {
+        if (this.currentText == "INSERT COIN" || this.currentText == "EXACT CHANGE ONLY")
+            if (canMakeChange)
+                this.currentText = "INSERT COIN";
+            else
+                this.currentText = "EXACT CHANGE ONLY";
+    }
+
     public String getCurrentText() {
         return this.currentText;
     }

@@ -141,4 +141,11 @@ public class VendingMachineTests {
         assertEquals("EXACT CHANGE ONLY", vendingMachine.getDisplayScreenText());
     }
 
+    @Test
+    public void whenVendingMachineCanMakeChangedAndNothingHasBeenSelectedDisplayScreenIsSetToInsertCoin(){
+        vendingMachine.fillCoinBox(1,4,2);
+
+        assertEquals("INSERT COIN", vendingMachine.getDisplayScreenText());
+    }
+
 }
