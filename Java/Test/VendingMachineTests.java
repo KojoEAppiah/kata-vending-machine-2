@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class VendingMachineTests {
 
@@ -31,5 +32,11 @@ public class VendingMachineTests {
 
         vendingMachine.addCoin(VendingMachine.QUARTER);
         assertEquals(0.25, vendingMachine.getCurrentCoinsValue(), 0.0);
+    }
+
+    @Test
+    public void whenAColaIsAddedToTheVendingMachineItsColaCountIncreasesByTheProvidedAmount(){
+        vendingMachine.addItem("Cola", 1);
+        assertEquals(1, vendingMachine.getItemCount("Cola"));
     }
 }

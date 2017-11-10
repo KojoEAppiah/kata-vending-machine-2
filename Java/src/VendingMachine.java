@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class VendingMachine {
 
     private double[] coinValues;
@@ -7,7 +9,11 @@ public class VendingMachine {
     public static final int DIME = 1;
     public static final int QUARTER = 2;
 
+    private HashMap<String, Integer> itemCounts;
+
     VendingMachine(){
+        this.itemCounts = new HashMap<String, Integer>();
+
         this.coinValues = new double[3];
         this.currentCoinsValue = 0.00;
 
@@ -22,5 +28,20 @@ public class VendingMachine {
 
     public double getCurrentCoinsValue(){
         return this.currentCoinsValue;
+    }
+
+    public boolean canMakeChange() {
+        return false;
+    }
+
+    public void addItem(String itemName, int amount) {
+        if (this.itemCounts.get(itemName) != null)
+            this.itemCounts.put(itemName, this.itemCounts.get(itemName) + amount);
+        else
+            this.itemCounts.put(itemName, amount);
+    }
+
+    public int getItemCount(String itemName){
+        return itemCounts.get(itemName);
     }
 }
