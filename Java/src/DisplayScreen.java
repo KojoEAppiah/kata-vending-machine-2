@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class DisplayScreen {
 
     private String currentText;
@@ -8,6 +10,11 @@ public class DisplayScreen {
 
     public void setCurrentText(String text){
         this.currentText = text;
+    }
+
+    public void setCoinDisplay(double value){
+        DecimalFormat formatter = new DecimalFormat("$0.00");
+        this.currentText = formatter.format(value);
     }
 
     public String getCurrentText() {

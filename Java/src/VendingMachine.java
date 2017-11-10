@@ -44,12 +44,13 @@ public class VendingMachine {
         this.coinValues[DIME] = 0.10;
         this.coinValues[QUARTER] = 0.25;
 
-        this.displayScreen = new DisplayScreen("");
+        this.displayScreen = new DisplayScreen("EXACT CHANGE ONLY");
 
     }
 
     public void addCoin(int coin){
         this.currentCoinsValue += this.coinValues[coin];
+        this.displayScreen.setCoinDisplay(currentCoinsValue);
     }
 
     public double getCurrentCoinsValue(){

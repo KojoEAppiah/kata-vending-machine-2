@@ -129,4 +129,16 @@ public class VendingMachineTests {
         assertEquals("THANK YOU", vendingMachine.getDisplayScreenText());
     }
 
+    @Test
+    public void whenCoinsAreAddedTheDisplayScreenIsSetCurrentCoinsValue(){
+        vendingMachine.addCoin(VendingMachine.QUARTER);
+        assertEquals("$0.25", vendingMachine.getDisplayScreenText());
+    }
+
+    @Test
+    public void whenVendingMachineIsInitializedWithDisplayScreenIsSetToExactChangeOnly(){
+
+        assertEquals("EXACT CHANGE ONLY", vendingMachine.getDisplayScreenText());
+    }
+
 }
