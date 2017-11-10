@@ -178,4 +178,11 @@ public class VendingMachineTests {
         vendingMachine.selectItem("Candy");
         assertEquals("PRICE $0.65", vendingMachine.getDisplayScreenText());
     }
+
+    @Test
+    public void whenAnChipsAreSelectedAndCurrentCoinsValueIsInsufficientTheItemsPriceIsDisplayed(){
+        vendingMachine.addItem("Chips", 1);
+        vendingMachine.selectItem("Chips");
+        assertEquals("PRICE $0.50", vendingMachine.getDisplayScreenText());
+    }
 }

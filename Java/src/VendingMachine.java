@@ -109,7 +109,7 @@ public class VendingMachine {
             this.displayScreen.toggleSoldOut(this.currentCoinsValue, this.canMakeChange());
         }
         else{
-            this.displayScreen.setCurrentText("PRICE $" + this.itemPrices.get(itemName));
+            this.displayScreen.togglePrice(itemPrices.get(itemName), this.currentCoinsValue);
         }
     }
 

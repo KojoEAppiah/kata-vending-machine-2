@@ -44,4 +44,9 @@ public class DisplayScreen {
         }
     }
 
+    public void togglePrice(Double price, double currentCoinsValue) {
+
+        this.setCoinDisplay(price);
+        this.currentText = "PRICE " + this.currentText;
+    }
 }
