@@ -60,10 +60,12 @@ public class VendingMachine {
 
 
     public void addItem(String itemName, int amount) {
-        if (this.itemCounts.get(itemName) != null)
+        if (this.itemCounts.get(itemName) != null) {
             this.itemCounts.put(itemName, this.itemCounts.get(itemName) + amount);
-        else
+        }
+        else {
             this.itemCounts.put(itemName, amount);
+        }
     }
 
 
@@ -89,9 +91,7 @@ public class VendingMachine {
 
 
     public boolean canMakeChange(){
-        if(this.coinBoxCoins[QUARTER] >= 2 && this.coinBoxCoins[DIME] >= 4 && this.coinBoxCoins[NICKEL] >= 1)
-            return true;
-        return false;
+        return (this.coinBoxCoins[QUARTER] >= 2 && this.coinBoxCoins[DIME] >= 4 && this.coinBoxCoins[NICKEL] >= 1);
     }
 
 
