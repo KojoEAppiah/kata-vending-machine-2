@@ -45,17 +45,19 @@ public class VendingMachine {
         this.coinValues[QUARTER] = 0.25;
 
         this.displayScreen = new DisplayScreen("EXACT CHANGE ONLY");
-
     }
+
 
     public void addCoin(int coin){
         this.currentCoinsValue += this.coinValues[coin];
         this.displayScreen.setCoinDisplay(currentCoinsValue);
     }
 
+
     public double getCurrentCoinsValue(){
         return this.currentCoinsValue;
     }
+
 
     public void addItem(String itemName, int amount) {
         if (this.itemCounts.get(itemName) != null)
@@ -64,10 +66,10 @@ public class VendingMachine {
             this.itemCounts.put(itemName, amount);
     }
 
+
     public void setItemPrice(String itemName, double price) {
         this.itemPrices.put(itemName, price);
     }
-
 
     public int getItemCount(String itemName){
         return this.itemCounts.get(itemName);
@@ -85,24 +87,19 @@ public class VendingMachine {
         return this.coinBoxCoins[coinType];
     }
 
+
     public boolean canMakeChange(){
         if(this.coinBoxCoins[QUARTER] >= 2 && this.coinBoxCoins[DIME] >= 4 && this.coinBoxCoins[NICKEL] >= 1)
             return true;
         return false;
     }
 
+
     public void selectItem(String itemName) {
         if (this.currentCoinsValue >= this.itemPrices.get(itemName) && this.itemCounts.get(itemName) != null) {
-            this.itemCounts.put(itemName, (this.itemCounts.get(itemName) - 1));
-            this.coinReturnValue += this.currentCoinsValue - this.itemPrices.get(itemName);
-            this.coinBoxValue += this.itemPrices.get(itemName);
-            for(int index = 0; index < 3; index++){
-                this.coinBoxCoins[index] += this.currentCoins[index];
-                this.currentCoins[index] = 0;
-            }
             double changeAmount = new BigDecimal(this.currentCoinsValue - this.itemPrices.get(itemName)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+            this.dispenseItem(itemName);
             makeChange(changeAmount);
-            this.currentCoinsValue = 0;
             this.displayScreen.setCurrentText("THANK YOU");
         }
         else if(this.itemCounts.get(itemName) < 1){
@@ -112,6 +109,19 @@ public class VendingMachine {
             this.displayScreen.togglePrice(itemPrices.get(itemName), this.currentCoinsValue, this.canMakeChange());
         }
     }
+
+
+    public void dispenseItem(String itemName){
+        this.itemCounts.put(itemName, (this.itemCounts.get(itemName) - 1));
+        this.coinReturnValue += this.currentCoinsValue - this.itemPrices.get(itemName);
+        this.coinBoxValue += this.itemPrices.get(itemName);
+        for(int index = 0; index < 3; index++){
+            this.coinBoxCoins[index] += this.currentCoins[index];
+            this.currentCoins[index] = 0;
+        }
+        this.currentCoinsValue = 0;
+    }
+
 
     private void makeChange(double changeAmount) {
         this.coinBoxValue -= changeAmount;
@@ -132,6 +142,7 @@ public class VendingMachine {
         }
     }
 
+
     public void fillCoinBox(int nickels, int dimes, int quarters) {
         this.coinBoxCoins[NICKEL] += nickels;
         this.coinBoxCoins[DIME] += dimes;
@@ -148,6 +159,7 @@ public class VendingMachine {
         this.coinReturnValue = this.currentCoinsValue;
         this.currentCoinsValue = 0;
     }
+
 
     public String getDisplayScreenText() {
         return this.displayScreen.getCurrentText();
