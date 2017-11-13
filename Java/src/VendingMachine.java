@@ -126,18 +126,13 @@ public class VendingMachine {
     private void makeChange(double changeAmount) {
         this.coinBoxValue -= changeAmount;
         while(changeAmount > 0) {
-            if (changeAmount >= 0.25) {
-                this.coinBoxCoins[QUARTER]--;
-                this.coinReturnCoins[QUARTER]++;
-                changeAmount -= 0.25;
-            } else if (changeAmount >= 0.10) {
-                this.coinBoxCoins[DIME]--;
-                this.coinReturnCoins[DIME]++;
-                changeAmount -= 0.10;
-            } else {
-                this.coinBoxCoins[NICKEL]--;
-                this.coinReturnCoins[NICKEL]++;
-                changeAmount -= 0.05;
+            for (int coinType = QUARTER; coinType >= NICKEL; coinType--) {
+                if (changeAmount >= this.coinValues[coinType]) {
+                    this.coinBoxCoins[coinType]--;
+                    this.coinReturnCoins[coinType]++;
+                    changeAmount -= this.coinValues[coinType];
+                    continue;
+                }
             }
         }
     }
